@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const tabs = document.querySelectorAll("#tabs a");
+
+        tabs.forEach(function (tab) {
+          tab.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            tabs.forEach(function (tab) {
+              tab.parentElement.classList.remove(
+                "border-l",
+                "border-t",
+                "border-r",
+                "rounded-t"
+              );
+            });
+
+            document
+              .querySelectorAll("#tab-contents div")
+              .forEach(function (content) {
+                content.classList.add("hidden");
+              });
+
+            tab.parentElement.classList.add(
+              "border-l",
+              "border-t",
+              "border-r",
+              "rounded-t"
+            );
+
+            const activeTabContent = document.querySelector(
+              tab.getAttribute("href")
+            );
+            activeTabContent.classList.remove("hidden");
+          });
+        });
+        document.querySelector("#default-tab").click();
+      });
+    </script>
+  </head>
+  <body class="h-screen flex justify-center items-center bg-gray-100">
+    <div class="fixed top-0 left-0 right-0 bg-white shadow">
+      <ul id="tabs" class="inline-flex w-full px-1 pt-2">
+        <li class="px-10 py-2 -mb-px font-semibold rounded-t">
+          <a id="default-tab" href="#home">Home</a>
+        </li>
+        <li class="px-10 py-2 -mb-px font-semibold rounded-t">
+          <a href="#wallet">Wallet</a>
+        </li>
+      </ul>
+    </div>
+
+    <div id="tab-contents" class="pt-12 w-full">
+      <div id="home" class="p-4 hidden">
+        <p class="max-w-lg mx-auto text-center p-5 text-lg">
+          Welcome to the INTMAX Wallet Widget. This widget allows you to manage
+          your digital wallet efficiently. Please select the 'Wallet' tab in the
+          header to view your wallet details.
+        </p>
+      </div>
+
+      <div id="wallet" class="flex items-center justify-center">
+        <div id="widget-container" class="!block"></div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
