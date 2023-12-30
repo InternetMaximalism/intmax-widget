@@ -36,13 +36,12 @@ export class INTMAXWalletWidget {
       (queryParams ? `?${queryParams}` : "");
 
     this.configureIframe(iframe, widgetUrl);
+    this.setupIframeListener(iframe);
 
     iframe.onload = () => {
       if (this.options.onLoad) {
         this.options.onLoad();
       }
-
-      this.setupIframeListener(iframe);
     };
     container.appendChild(iframe);
   }
