@@ -47,12 +47,12 @@ export class INTMAXWalletWidget {
   }
 
   private buildQueryParams(): string {
+    const allowedKeys = ["clientId", "theme", "lang"];
     const queryParams = new URLSearchParams();
-    if (this.options.clientId) {
-      queryParams.append("clientId", encodeURIComponent(this.options.clientId));
-    }
-    if (this.options.theme) {
-      queryParams.append("theme", this.options.theme);
+    for (const [key, value] of Object.entries(this.options)) {
+      if (allowedKeys.includes(key) && value) {
+        queryParams.append(key, encodeURIComponent(value));
+      }
     }
     return queryParams.toString();
   }

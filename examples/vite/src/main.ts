@@ -4,11 +4,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const widgetOptions = {
     clientId: "your-client-id",
     url: "https://internal.dev.intmaxwallet.site",
-    theme: "light" as const,
+    theme: "light",
+    lang: "en",
     contentStyles: {
-      primary: "52 211 153",
-      gradientBtnForeground: "29 78 216",
-      gradientBtn: "255 255 0",
+      primary: "rgb(52, 211, 153)",
+      gradientBtnForeground: "rgb(29, 78, 216)",
+      gradientSidebar: "rgb(245, 158, 11)",
+      gradientBtn: "#fffff",
+      foreground: "rgb(245, 158, 11)",
     },
   };
 
