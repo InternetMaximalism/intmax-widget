@@ -31,14 +31,22 @@ Create an instance of the widget, passing the container element's ID and options
 ```ts
 const walletWidget = new INTMAXWalletWidget("wallet-container", {
   clientId: "your-client-id",
-  lang: "en",
-  theme: "light",
-  contentStyles: {
-    primary: "rgb(52, 211, 153)",
-    gradientBtnForeground: "rgb(29, 78, 216)",
-    gradientSidebar: "rgb(245, 158, 11)",
-    gradientBtn: "#fffff",
-    foreground: "rgb(245, 158, 11)",
+  contentOptions: {
+    title: "Custom Wallet",
+    lang: "en",
+    theme: "light",
+    horizontalLogo: {
+      url: "https://example.com/logo.png",
+        width: "110px",
+        height: "110px",
+      },
+    styles: {
+      primary: "rgb(52, 211, 153)",
+      gradientBtnForeground: "rgb(29, 78, 216)",
+      gradientSidebar: "rgb(245, 158, 11)",
+      gradientBtn: "#fffff",
+      foreground: "rgb(245, 158, 11)",
+    },
   },
 });
 walletWidget.mount();
@@ -50,11 +58,18 @@ When initializing the `INTMAXWalletWidget`, you can provide several options to c
 
 - `clientId` (required): Your unique client identifier.
 - `url` (optional): The URL to the INTMAX Wallet, if you want to use a custom or development environment.
+- `style` (optional): Custom styles for the iframe container, such as width and height.
+- `contentOptions` (optional): Customization options for the content displayed within the widget, including language, theme, logos, and styles.
+- `onLoad` (optional): A callback function that is called when the widget is fully loaded.
+
+### contentOptions
+
 - `lang` (optional): The language of the widget. Specify a language code (e.g., "en" for English) to localize the widget interface.
 - `theme` (optional): The theme of the widget, either "light", "dark" or "system".
-- `style` (optional): Custom styles for the iframe container, such as width and height.
-- `contentStyles` (optional): Custom styles for the content inside the widget.
-- `onLoad` (optional): A callback function that is called when the widget is fully loaded.
+- `title` (optional): Set a custom title for the widget, which can be useful for branding or providing a specific call-to-action to users.
+- `description` (optional): Provide a brief description of the widget or its functionality. This can help users understand the purpose of the widget and how it can assist them.
+- `horizontalLogo` and `verticalLogo` (optional): These settings allow you to specify custom logos for different orientations, enhancing branding and ensuring consistent visual presentation across various screen sizes and layouts.
+- `styles` (optional): Customize the look and feel of the widget's content with specific style properties. You can define colors, fonts, and other CSS properties to align the widget's appearance with your website's design.
 
 ### clientId
 

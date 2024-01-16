@@ -1,10 +1,24 @@
+interface LogoOptions {
+  url: string;
+  width: string;
+  height: string;
+}
+
+interface ContentOptions {
+  title?: string;
+  description?: string;
+  lang?: string;
+  theme?: "light" | "dark" | "system";
+  horizontalLogo?: LogoOptions;
+  verticalLogo?: LogoOptions;
+  styles?: { [key: string]: string };
+}
+
 interface WidgetOptions {
   clientId: string;
   url?: string;
-  lang?: string;
-  theme?: "light" | "dark" | "system";
   style?: { [key: string]: string };
-  contentStyles?: { [key: string]: string };
+  contentOptions?: ContentOptions;
   onLoad?: () => void;
 }
 
@@ -47,7 +61,7 @@ export class INTMAXWalletWidget {
   }
 
   private buildQueryParams(): string {
-    const allowedKeys = ["clientId", "theme", "lang"];
+    const allowedKeys = ["clientId"];
     const queryParams = new URLSearchParams();
     for (const [key, value] of Object.entries(this.options)) {
       if (allowedKeys.includes(key) && value) {
@@ -80,8 +94,8 @@ export class INTMAXWalletWidget {
         iframe.contentWindow
       ) {
         const message = {
-          type: "applyStyles",
-          contentStyles: this.options.contentStyles || {},
+          type: "applyOptions",
+          contentOptions: this.options.contentOptions || {},
         };
         iframe.contentWindow.postMessage(message, walletUrl);
       }
