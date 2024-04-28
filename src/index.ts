@@ -63,6 +63,9 @@ export class INTMAXWalletWidget {
   private buildQueryParams(): string {
     const allowedKeys = ["clientId"];
     const queryParams = new URLSearchParams();
+
+    queryParams.append("mode", "widget");
+
     for (const [key, value] of Object.entries(this.options)) {
       if (allowedKeys.includes(key) && value) {
         queryParams.append(key, encodeURIComponent(value));
